@@ -25,54 +25,13 @@ const renderListItem = (item) => {
       <Text style={styles.itemName}>{item.name} </Text>
       <Text style={styles.itemTypeText}>{item.type} </Text>
       <Text style={styles.itemWearingText}>{item.wearing} </Text>
-      <Text style={styles.priceText}>{item.price}</Text>
+      <Text style={styles.priceText}> ₹ {item.price}</Text>
     </View>
   );
 };
 
 export default WomenPage = () => {
-  const [listData, setListData] = useState([
-    {
-      id: 1,
-      image: require("../assets/img1.png"),
-      name: "12 STOREEZ",
-      type: "Mercerised-jersey",
-      wearing: "shorts",
-      price: "₹ 4,999",
-    },
-    {
-      id: 2,
-      image: require("../assets/img2.png"),
-      name: "12 STOREEZ",
-      type: "Mercerised-jersey",
-      wearing: "shorts",
-      price: "₹ 4,999",
-    },
-    {
-      id: 3,
-      image: require("../assets/img1.png"),
-      name: "12 STOREEZ",
-      type: "Mercerised-jersey",
-      wearing: "shorts",
-      price: "₹ 4,999",
-    },
-    {
-      id: 4,
-      image: require("../assets/img2.png"),
-      name: "12 STOREEZ",
-      type: "Mercerised-jersey",
-      wearing: "shorts",
-      price: "₹ 4,999",
-    },
-    {
-      id: 5,
-      image: require("../assets/img1.png"),
-      name: "12 STOREEZ",
-      type: "Mercerised-jersey",
-      wearing: "shorts",
-      price: "₹ 4,999",
-    },
-  ]);
+  const [listData, setListData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -136,7 +95,7 @@ export default WomenPage = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ffffff",
-    height: "100%",
+    height: "93.5%",
     marginTop: 50,
   },
   topBar: {
