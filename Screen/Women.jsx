@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ffffff",
     height: "93.5%",
-    marginTop: 50,
   },
   topBar: {
     flexDirection: "row",
