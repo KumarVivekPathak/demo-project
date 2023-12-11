@@ -95,7 +95,7 @@ export default WomenPage = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ffffff",
-    height: "93.5%",
+    height: "100%",
   },
   topBar: {
     flexDirection: "row",
