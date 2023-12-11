@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -15,7 +15,7 @@ const renderListItem = (item) => {
   return (
     <View style={styles.listItemContainer}>
       <Image
-        source={item.image}
+        source={{ uri: item.image + "" }}
         style={{ height: 200, width: "100%", borderRadius: 5 }}
       />
       <TouchableOpacity style={styles.heartIcon}>
@@ -73,6 +73,37 @@ export default WomenPage = () => {
       price: "₹ 4,999",
     },
   ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://storeapi.wekreta.in/api/v4/product/customer?id=0&secondaryKey=3d70712a-26fb-11ee-b277-029ff3b26cce&productName=&categoryName=serveware,kitchenware&subCategoryName=&subSubCategoryName=&brandName=&isFeatured=0&search=&currentPage=1&itemsPerPage=27&sortBy=createdDate&sortOrder=desc&isFetchListing=0&searchTag=&storeUuid=cb910d4a-bf60-11ed-814d-0252190a7100"
+      );
+      const data = await response.json();
+      const objects = data.object.map((obj) => {
+        const id = obj.id;
+        const image = obj.mediaUrl;
+        const name = obj.name;
+        const category = obj.category;
+        const type = category[0].name;
+        const price = obj.variants[0]?.mrp;
+        const variant = obj.variants[0]?.variant;
+        const renderObj = {
+          id: id,
+          image: image,
+          name: name,
+          type: type,
+          wearing: variant,
+          price: price,
+        };
+        return renderObj;
+      });
+      setListData(objects);
+      console.log("Here are objectsss ::: ", objects);
+    };
+    fetchData();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Header />
@@ -136,7 +167,7 @@ const styles = StyleSheet.create({
   productCountText: {
     fontSize: 17,
     color: "#9caabd",
-    fontWeight: "450",
+    fontWeight: "500",
   },
   listContaintCotainerStyles: {
     marginTop: 10,
